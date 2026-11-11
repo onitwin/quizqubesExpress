@@ -38,3 +38,13 @@ const Question = sequelize.define("Question", {
 Question.belongsTo(QuestionSet, { foreignKey: "questionSetId" });
 
 module.exports = Question;
+
+/*Mapped to following on database
+id(char(36))
+questionSetId(char(36))
+pairId(int)
+question(varchar(255))
+answer(varchar(255))
+questionCategory(varchar(255))
+questionFormat(varchar(255))
+ */

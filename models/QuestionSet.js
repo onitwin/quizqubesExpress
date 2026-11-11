@@ -26,3 +26,11 @@ const QuestionSet = sequelize.define("QuestionSet", {
 });
 
 module.exports = QuestionSet;
+
+/* Mapped to following on database:
+id(char(36))
+publicationDate (bigint)
+published(tinyint(1))
+description(varchar(700))
+logic(varchar(30))
+ */

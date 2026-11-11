@@ -1,47 +1,72 @@
-const userService = require("../services/userService");
+const questionSetService = require("../services/questionSetService");
 
-const createUser = async (req, res) => {
-  const { username, email } = req.body;
+const createQuestionSet = async (req, res) => {
+  const { publicationDate, published, description, logic } = req.body;
   try {
-    const user = await userService.createUser(username, email);
-    res.status(201).json(user);
+    const questionSet = await questionSetService.creatQuestionSet(
+      publicationDate,
+      published,
+      description,
+      logic,
+    );
+    res.status(201).json(questionSet);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
 
-const getAllUsers = async (req, res) => {
-  try {
-    const users = await userService.getAllUsers();
-    res.status(200).json(users);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-};
-
-const updateUser = async (req, res) => {
+const getQuestionSetById = async (req, res) => {
   const { id } = req.params;
-  const { username, email } = req.body;
   try {
-    const user = await userService.updateUser(id, username, email);
-    if (user) {
-      res.status(200).json(user);
+    const success = await questionSetService.getQuestionSetById(id);
+    if (success) {
+      res.status(200).json({ message: `Question set ${id} deleted` });
     } else {
-      res.status(404).json({ message: "User not found" });
+      res.status(404).json({ message: `Question Set ${id} not found` });
     }
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
 
-const deleteUser = async (req, res) => {
+const getAllQuestionSets = async (req, res) => {
+  try {
+    const questionSets = await questionSetService.getAllQuestionSets();
+    res.status(200).json(questionSets);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+const updateQuestionSet = async (req, res) => {
+  const { id } = req.params;
+  const { publicationDate, published, description, logic } = req.body;
+  try {
+    const questionSet = await questionSetService.updateQuestionSet(
+      id,
+      publicationDate,
+      published,
+      description,
+      logic,
+    );
+    if (questionSet) {
+      res.status(200).json(questionSet);
+    } else {
+      res.status(404).json({ message: `Question Set ${id} not found` });
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+const deleteQuestionSet = async (req, res) => {
   const { id } = req.params;
   try {
-    const success = await userService.deleteUser(id);
+    const success = await questionSetService.deleteQuestionSet(id);
     if (success) {
-      res.status(200).json({ message: "User deleted" });
+      res.status(200).json({ message: `Question set ${id} deleted` });
     } else {
-      res.status(404).json({ message: "User not found" });
+      res.status(404).json({ message: `Question Set ${id} not found` });
     }
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -49,8 +74,9 @@ const deleteUser = async (req, res) => {
 };
 
 module.exports = {
-  createUser,
-  getAllUsers,
-  updateUser,
-  deleteUser,
+  createQuestionSet,
+  getQuestionSetById,
+  getAllQuestionSets,
+  updateQuestionSet,
+  deleteQuestionSet,
 };

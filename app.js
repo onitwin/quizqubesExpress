@@ -1,11 +1,15 @@
 const express = require("express");
 const sequelize = require("./db");
 require("dotenv").config();
+const questionRoutes = require("./routes/questionRoutes");
+const questionSetRoutes = require("./routes/questionSetRoutes");
 
 const app = express();
 const port = 3000;
 
 app.use(express.json());
+app.use(questionRoutes);
+app.use(questionSetRoutes);
 
 // Test DB Connection
 sequelize
