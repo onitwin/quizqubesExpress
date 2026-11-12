@@ -3,20 +3,20 @@ const Question = require("../models/Question");
 const createQuestion = async (
   questionSetId,
   pairId,
-  newQuestion,
+  question,
   answer,
   questionCategory,
   questionFormat,
 ) => {
-  const question = await Question.create({
+  const createdQuestion = await Question.create({
     questionSetId,
     pairId,
-    newQuestion,
+    question,
     answer,
     questionCategory,
     questionFormat,
   });
-  return question;
+  return createdQuestion;
 };
 
 const getAllQuestions = async () => {

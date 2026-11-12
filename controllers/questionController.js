@@ -10,7 +10,7 @@ const createQuestion = async (req, res) => {
     questionFormat,
   } = req.body;
   try {
-    const question = await questionService.createQuestion(
+    const newQuestion = await questionService.createQuestion(
       questionSetId,
       pairId,
       question,
@@ -18,7 +18,7 @@ const createQuestion = async (req, res) => {
       questionCategory,
       questionFormat,
     );
-    res.status(201).json(question);
+    res.status(201).json(newQuestion);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -58,7 +58,7 @@ const updateQuestion = async (req, res) => {
     questionFormat,
   } = req.body;
   try {
-    const upDatedQuestion = await questionService.updateQuestion(
+    const updatedQuestion = await questionService.updateQuestion(
       id,
       questionSetId,
       pairId,
@@ -68,7 +68,7 @@ const updateQuestion = async (req, res) => {
       questionFormat,
     );
     if (question) {
-      res.status(200).json(upDatedQuestion);
+      res.status(200).json(updatedQuestion);
     } else {
       res.status(404).json({ message: `Question using id ${id} not found` });
     }
