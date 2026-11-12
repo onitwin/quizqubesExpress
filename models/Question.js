@@ -36,6 +36,10 @@ const Question = sequelize.define("Question", {
 
 // Define relationship: One User has many Posts > one question set has many questions
 Question.belongsTo(QuestionSet, { foreignKey: "questionSetId" });
+QuestionSet.hasMany(Question, {
+  foreignKey: "questionSetId",
+  onDelete: "CASCADE",
+});
 
 module.exports = Question;
 

@@ -27,9 +27,9 @@ const createQuestion = async (req, res) => {
 const getQuestionById = async (req, res) => {
   const { id } = req.params;
   try {
-    const success = await questionService.getQuestionById(id);
-    if (success) {
-      res.status(200).json({ message: `Question with id ${id} retrieved` });
+    const question = await questionService.getQuestionById(id);
+    if (question) {
+      res.status(200).json({ message: question });
     } else {
       res.status(404).json({ message: `Question with id ${id} not found` });
     }
@@ -58,7 +58,7 @@ const updateQuestion = async (req, res) => {
     questionFormat,
   } = req.body;
   try {
-    const question = await questionService.updateQuestion(
+    const upDatedQuestion = await questionService.updateQuestion(
       id,
       questionSetId,
       pairId,
@@ -68,7 +68,7 @@ const updateQuestion = async (req, res) => {
       questionFormat,
     );
     if (question) {
-      res.status(200).json(post);
+      res.status(200).json(upDatedQuestion);
     } else {
       res.status(404).json({ message: `Question using id ${id} not found` });
     }

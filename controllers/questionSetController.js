@@ -18,9 +18,9 @@ const createQuestionSet = async (req, res) => {
 const getQuestionSetById = async (req, res) => {
   const { id } = req.params;
   try {
-    const success = await questionSetService.getQuestionSetById(id);
-    if (success) {
-      res.status(200).json({ message: `Question set ${id} deleted` });
+    const questionSets = await questionSetService.getQuestionSetById(id);
+    if (questionSets) {
+      res.status(200).json({ message: questionSets });
     } else {
       res.status(404).json({ message: `Question Set ${id} not found` });
     }
