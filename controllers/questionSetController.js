@@ -3,7 +3,7 @@ const questionSetService = require("../services/questionSetService");
 const createQuestionSet = async (req, res) => {
   const { publicationDate, published, description, logic } = req.body;
   try {
-    const questionSet = await questionSetService.creatQuestionSet(
+    const questionSet = await questionSetService.createQuestionSet(
       publicationDate,
       published,
       description,
