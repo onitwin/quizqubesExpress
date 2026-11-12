@@ -17,11 +17,11 @@ const QuestionSet = sequelize.define("QuestionSet", {
   },
   description: {
     type: DataTypes.STRING,
-    defaultValue: "Please enter a description",
+    defaultValue: "Enter a description",
   },
   logic: {
     type: DataTypes.STRING,
-    defaultValue: "Please enter a logic description",
+    defaultValue: "Enter a logic description",
   },
 });
 
