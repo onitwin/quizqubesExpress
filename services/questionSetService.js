@@ -1,12 +1,14 @@
 const QuestionSet = require("../models/QuestionSet");
 
 const createQuestionSet = async (
+  title,
   publicationDate,
   published,
   description,
   logic,
 ) => {
   const questionSet = await QuestionSet.create({
+    title,
     publicationDate,
     published,
     description,
@@ -26,6 +28,7 @@ const getQuestionSetById = async (id) => {
 };
 
 const updateQuestionSet = async (
+  title,
   id,
   publicationDate,
   published,
@@ -34,6 +37,7 @@ const updateQuestionSet = async (
 ) => {
   const questionSet = await QuestionSet.findByPk(id);
   if (questionSet) {
+    questionSet.title = title;
     questionSet.publicationDate = publicationDate;
     questionSet.published = published;
     questionSet.description = description;

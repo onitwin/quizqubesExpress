@@ -8,6 +8,10 @@ const QuestionSet = sequelize.define("QuestionSet", {
     primaryKey: true,
     defaultValue: DataTypes.UUIDV4,
   },
+  title: {
+    type: DataTypes.STRING(255),
+    allowNull: true,
+  },
   publicationDate: {
     type: DataTypes.BIGINT,
   },
@@ -29,6 +33,7 @@ module.exports = QuestionSet;
 
 /* Mapped to following on database:
 id(char(36))
+title(varchar(255))
 publicationDate (bigint)
 published(tinyint(1))
 description(varchar(700))

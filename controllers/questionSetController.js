@@ -1,9 +1,10 @@
 const questionSetService = require("../services/questionSetService");
 
 const createQuestionSet = async (req, res) => {
-  const { publicationDate, published, description, logic } = req.body;
+  const { title, publicationDate, published, description, logic } = req.body;
   try {
     const questionSet = await questionSetService.createQuestionSet(
+      title,
       publicationDate,
       published,
       description,
@@ -40,9 +41,10 @@ const getAllQuestionSets = async (req, res) => {
 
 const updateQuestionSet = async (req, res) => {
   const { id } = req.params;
-  const { publicationDate, published, description, logic } = req.body;
+  const { title, publicationDate, published, description, logic } = req.body;
   try {
     const questionSet = await questionSetService.updateQuestionSet(
+      title,
       id,
       publicationDate,
       published,
