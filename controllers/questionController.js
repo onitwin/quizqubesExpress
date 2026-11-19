@@ -29,7 +29,7 @@ const getQuestionById = async (req, res) => {
   try {
     const question = await questionService.getQuestionById(id);
     if (question) {
-      res.status(200).json({ message: question });
+      res.status(200).json(question);
     } else {
       res.status(404).json({ message: `Question with id ${id} not found` });
     }
@@ -67,7 +67,7 @@ const updateQuestion = async (req, res) => {
       questionCategory,
       questionFormat,
     );
-    if (question) {
+    if (updatedQuestion) {
       res.status(200).json(updatedQuestion);
     } else {
       res.status(404).json({ message: `Question using id ${id} not found` });
