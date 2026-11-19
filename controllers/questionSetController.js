@@ -1,7 +1,14 @@
 const questionSetService = require("../services/questionSetService");
 
 const createQuestionSet = async (req, res) => {
-  const { title, publicationDate, published, description, logic } = req.body;
+  const {
+    title,
+    publicationDate,
+    published,
+    description,
+    logic,
+    maxQuestions,
+  } = req.body;
   try {
     const questionSet = await questionSetService.createQuestionSet(
       title,
@@ -9,6 +16,7 @@ const createQuestionSet = async (req, res) => {
       published,
       description,
       logic,
+      maxQuestions,
     );
     res.status(201).json(questionSet);
   } catch (error) {
@@ -41,7 +49,14 @@ const getAllQuestionSets = async (req, res) => {
 
 const updateQuestionSet = async (req, res) => {
   const { id } = req.params;
-  const { title, publicationDate, published, description, logic } = req.body;
+  const {
+    title,
+    publicationDate,
+    published,
+    description,
+    logic,
+    maxQuestions,
+  } = req.body;
   try {
     const questionSet = await questionSetService.updateQuestionSet(
       title,
@@ -50,6 +65,7 @@ const updateQuestionSet = async (req, res) => {
       published,
       description,
       logic,
+      maxQuestions,
     );
     if (questionSet) {
       res.status(200).json(questionSet);

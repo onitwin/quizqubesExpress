@@ -25,7 +25,13 @@ const QuestionSet = sequelize.define("QuestionSet", {
   },
   logic: {
     type: DataTypes.STRING,
-    defaultValue: "Enter a logic description",
+    defaultValue: "Pairs",
+  },
+  maxQuestions: {
+    type: DataTypes.INTEGER,
+    allowNull: true, // null means unlimited
+    defaultValue: 8,
+    validate: { isIn: [[8, 12, 16, 20, 24]] },
   },
 });
 

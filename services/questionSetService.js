@@ -6,6 +6,7 @@ const createQuestionSet = async (
   published,
   description,
   logic,
+  maxQuestions,
 ) => {
   const questionSet = await QuestionSet.create({
     title,
@@ -13,6 +14,7 @@ const createQuestionSet = async (
     published,
     description,
     logic,
+    maxQuestions,
   });
   return questionSet;
 };
@@ -34,6 +36,7 @@ const updateQuestionSet = async (
   published,
   description,
   logic,
+  maxQuestions,
 ) => {
   const questionSet = await QuestionSet.findByPk(id);
   if (questionSet) {
@@ -42,6 +45,7 @@ const updateQuestionSet = async (
     questionSet.published = published;
     questionSet.description = description;
     questionSet.logic = logic;
+    questionSet.maxQuestions = maxQuestions;
     await questionSet.save();
     return questionSet;
   }
