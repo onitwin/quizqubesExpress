@@ -20,8 +20,17 @@ const createQuestionSet = async (
 };
 
 const getAllQuestionSets = async () => {
-  const questionSets = await QuestionSet.findAll();
+  const questionSets = await QuestionSet.findAll({
+    order: [["publicationDate", "ASC"]],
+  });
   return questionSets;
+};
+
+const getQuestionSetByDate = async (unixDate) => {
+  const questionSet = await QuestionSet.findOne({
+    where: { publicationDate: unixDate },
+  });
+  return questionSet;
 };
 
 const getQuestionSetById = async (id) => {
@@ -67,4 +76,5 @@ module.exports = {
   getQuestionSetById,
   updateQuestionSet,
   deleteQuestionSet,
+  getQuestionSetByDate,
 };
