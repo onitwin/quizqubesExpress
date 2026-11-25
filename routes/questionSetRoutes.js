@@ -8,5 +8,9 @@ router.get("/questionSet/:id", questionSetController.getQuestionSetById);
 router.get("/questionSets", questionSetController.getAllQuestionSets);
 router.put("/questionSet/:id", questionSetController.updateQuestionSet);
 router.delete("/questionSet/:id", questionSetController.deleteQuestionSet);
+router.get(
+  "/questionSet/date/:unixDate",
+  questionSetController.getQuestionSetByDate,
+);
 
 module.exports = router;

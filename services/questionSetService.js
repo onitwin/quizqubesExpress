@@ -24,6 +24,13 @@ const getAllQuestionSets = async () => {
   return questionSets;
 };
 
+const getQuestionSetByDate = async (unixDate) => {
+  const questionSet = await QuestionSet.findOne({
+    where: { publicationDate: unixDate },
+  });
+  return questionSet;
+};
+
 const getQuestionSetById = async (id) => {
   const questionSet = await QuestionSet.findByPk(id);
   return questionSet;
@@ -67,4 +74,5 @@ module.exports = {
   getQuestionSetById,
   updateQuestionSet,
   deleteQuestionSet,
+  getQuestionSetByDate,
 };
