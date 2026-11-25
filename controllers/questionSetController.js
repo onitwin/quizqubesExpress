@@ -55,6 +55,23 @@ const getQuestionSetByDate = async (req, res) => {
   }
 };
 
+const getQuestionSetWithQuestionsByDate = async (req, res) => {
+  try {
+    const questionSet =
+      await questionSetService.getQuestionSetWithQuestionsByDate(
+        req.params.unixDate,
+      );
+    if (!questionSet) {
+      return res
+        .status(404)
+        .json({ message: "No question set found for that date" });
+    }
+    res.json(questionSet);
+  } catch (err) {
+    res.status(err.status || 500).json({ message: err.message });
+  }
+};
+
 const getAllQuestionSets = async (req, res) => {
   try {
     const questionSets = await questionSetService.getAllQuestionSets();
@@ -115,4 +132,5 @@ module.exports = {
   updateQuestionSet,
   deleteQuestionSet,
   getQuestionSetByDate,
+  getQuestionSetWithQuestionsByDate,
 };
