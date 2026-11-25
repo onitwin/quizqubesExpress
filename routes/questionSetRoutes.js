@@ -12,5 +12,9 @@ router.get(
   "/questionSet/date/:unixDate",
   questionSetController.getQuestionSetByDate,
 );
+router.get(
+  "/questionSet/questions/:unixDate",
+  questionSetController.getQuestionSetWithQuestionsByDate,
+);
 
 module.exports = router;
