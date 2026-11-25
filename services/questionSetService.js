@@ -43,13 +43,15 @@ const getQuestionSetById = async (id) => {
 };
 
 const getQuestionSetWithQuestionsByDate = async (unixDate) => {
+  if (!/^\d+$/.test(unixDate)) {
+    const err = new Error("Invalid timestamp. Use unix time in milliseconds.");
+    err.status = 400;
+    throw err;
+  }
   // Snap to the start of that UTC day, then match anything within the day
-  //doing this here allows simple "Date.now()" to be passed in with fetch on front end
-  console.log("unixdate:", unixDate);
+  //doing this here allows any valid date to be pased via API request
   const start = Math.floor(Number(unixDate) / DAY_MS) * DAY_MS;
   const end = start + DAY_MS;
-  console.log("START: ", start);
-  console.log("END: ", end);
 
   return QuestionSet.findOne({
     where: { publicationDate: { [Op.gte]: start, [Op.lt]: end } },
