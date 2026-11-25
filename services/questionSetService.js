@@ -20,7 +20,9 @@ const createQuestionSet = async (
 };
 
 const getAllQuestionSets = async () => {
-  const questionSets = await QuestionSet.findAll();
+  const questionSets = await QuestionSet.findAll({
+    order: [["publicationDate", "ASC"]],
+  });
   return questionSets;
 };
 
